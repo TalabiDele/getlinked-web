@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply p-0;
+    @apply m-0;
+    @apply box-border;
+  }
+
+  li {
+    @apply list-none;
+  }
+}
