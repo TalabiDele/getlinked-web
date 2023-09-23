@@ -1,6 +1,6 @@
 import Awards from '../components/Awards.jsx'
 import Criteria from '../components/Criteria.jsx'
-import Faq from '../components/FAQ.jsx'
+import Faq from '../components/Faq.jsx'
 import Intro from '../components/Intro'
 import Landing from '../components/Landing'
 import Partners from '../components/Partners.jsx'
