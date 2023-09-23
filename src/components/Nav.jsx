@@ -4,12 +4,14 @@ import Buttons from './Buttons'
 
 const Nav = () => {
 	return (
-		<div className=' border-b border-b-1 border-b-[rgba(255, 255, 255, 0.18)] fixed left-0 right-0'>
-			<div className=' flex justify-between w-[80vw] mx-auto items-center pt-[3rem] pb-[1rem]'>
+		<div className=' bg-bg'>
+			<div className=' flex justify-between w-[90vw] mx-auto items-center pt-[3rem] pb-[1rem]'>
 				<div className=''>
-					<img src={logo} alt='' />
+					<Link to={'/'}>
+						<img src={logo} alt='' />
+					</Link>
 				</div>
-				<ul className=' flex items-center w-[40vw] justify-between font-medium text-white'>
+				<ul className=' flex items-center w-[40vw] justify-between text-white text-[1rem]'>
 					<li className=''>
 						<Link to=''>Timeline</Link>
 					</li>
@@ -20,7 +22,7 @@ const Nav = () => {
 						<Link to=''>FAQs</Link>
 					</li>
 					<li className=''>
-						<Link to=''>Contact</Link>
+						<Link to='/contact'>Contact</Link>
 					</li>
 					<li className=''>
 						<Buttons text={'Register'} link={'/register'} isFull={false} />
