@@ -9,7 +9,7 @@ const Buttons = ({ text, isFull, link, event }) => {
 					onClick={event}
 					className={`${
 						isFull && 'w-full'
-					} py-[0.5rem] px-[1rem] rounded-sm bg-gradient-to-r from-secondary to-primary text-white text-sm`}
+					} py-[0.5rem] px-[1rem] rounded-sm bg-gradient-to-r from-secondary to-primary text-white text-sm font-medium`}
 				>
 					{text}
 				</button>
