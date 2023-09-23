@@ -23,8 +23,9 @@ const Dropdown = ({
 					name={name}
 					id={id}
 					className='border border-white rounded-sm bg-transparent text-sm p-[0.5rem] w-full text-white placeholder:text-sm shadow-lg mb-[0.5rem]'
+					onChange={change}
 				>
-					<option value={isValue} selected>
+					<option value={isValue} selected className=' text-black'>
 						{selected}
 					</option>
 					{selection?.map((e) => (

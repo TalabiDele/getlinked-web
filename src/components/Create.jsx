@@ -4,6 +4,7 @@ import Input from './Input'
 import { useState, useContext, useEffect } from 'react'
 import Context from './Context/Context'
 import Dropdown from './Dropdown'
+import Modal from './Modal'
 
 const Create = () => {
 	const [name, setName] = useState('')
@@ -67,6 +68,7 @@ const Create = () => {
 					category,
 					project_topic: topic,
 					privacy_poclicy_accepted: privacy,
+					group_size: size,
 				}),
 			}
 		)
@@ -75,11 +77,32 @@ const Create = () => {
 
 		setResponseData(data)
 
+		if (res.ok) {
+			setIsSent(true)
+		} else {
+			setIsError(true)
+
+			setTimeout(() => {
+				setIsError(false)
+			}, 4000)
+		}
+
 		console.log(data)
+
+		setLoading(false)
 	}
 
 	return (
 		<div className=' bg-bg py-[5rem]'>
+			{isSent && (
+				<Modal
+					header={'Congratulations you have successfully Registered!'}
+					paragraph={
+						'Yes, it was easy and you did it! check your mail box for next step'
+					}
+					event={() => setIsSent(false)}
+				/>
+			)}
 			<div className=' flex items-center justify-between w-[80vw] mx-auto'>
 				<img src={img} alt='' className=' w-[40vw]' />
 
@@ -95,9 +118,9 @@ const Create = () => {
 								change={(e) => setName(e.target.value)}
 								label={"Team's Name"}
 							/>
-							{isError && responseData.first_name && (
+							{isError && responseData.team_name && (
 								<p className='text-[0.7rem] text-red-600'>
-									{responseData.email}
+									{responseData.team_name}
 								</p>
 							)}
 						</div>
@@ -111,9 +134,9 @@ const Create = () => {
 								change={(e) => setNumber(e.target.value)}
 								label={'Phone'}
 							/>
-							{isError && responseData.first_name && (
+							{isError && responseData.phone_number && (
 								<p className='text-[0.7rem] text-red-600'>
-									{responseData.email}
+									{responseData.phone_number}
 								</p>
 							)}
 						</div>
@@ -145,9 +168,9 @@ const Create = () => {
 								change={(e) => setTopic(e.target.value)}
 								label={'Project Topic'}
 							/>
-							{isError && responseData.email && (
+							{isError && responseData.project_topic && (
 								<p className='text-[0.7rem] text-red-600'>
-									{responseData.email}
+									{responseData.project_topic}
 								</p>
 							)}
 						</div>
@@ -165,6 +188,11 @@ const Create = () => {
 								label={'Category'}
 								selection={categories}
 							/>
+							{isError && responseData.category && (
+								<p className='text-[0.7rem] text-red-600'>
+									{responseData.category}
+								</p>
+							)}
 						</div>
 						<div className=' mb-[2rem]'>
 							<Dropdown
@@ -177,6 +205,12 @@ const Create = () => {
 								label={'Group Size'}
 								selection={group}
 							/>
+
+							{isError && responseData.group_size && (
+								<p className='text-[0.7rem] text-red-600'>
+									{responseData.group_size}
+								</p>
+							)}
 						</div>
 					</div>
 
@@ -190,7 +224,7 @@ const Create = () => {
 							name='privacy'
 							id='privacy'
 							value={privacy}
-							onChange={(e) => setPrivacy(e.target.value)}
+							onChange={() => setPrivacy(!privacy)}
 							label={
 								'I agreed with the event terms and conditions  and privacy policy'
 							}
